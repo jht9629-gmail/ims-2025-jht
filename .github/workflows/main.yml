@@ -12,10 +12,30 @@ jobs:
       - name: Checkout 🛎️
         uses: actions/checkout@v4
 
-      - name: Sync introduction
+      - name: Sync wk01
         uses: luisaph/p5editorsynch@main
         with:
           p5-username: ${{ secrets.P5_USERNAME }}
           p5-password: ${{ secrets.P5_PASSWORD }}
           sketch-folder: wk01-noise
           collection-name: ims-wk01-noise
+
+      - name: Sync wk02
+        uses: luisaph/p5editorsynch@main
+        with:
+          p5-username: ${{ secrets.P5_USERNAME }}
+          p5-password: ${{ secrets.P5_PASSWORD }}
+          sketch-folder: wk02
+          collection-name: ims-wk02
+
+      - name: Commit changes
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add .
+          if git diff --staged --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "Sketch info updates [skip ci]"
+            git push
+          fi
