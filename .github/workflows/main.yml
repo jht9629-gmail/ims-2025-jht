@@ -28,6 +28,14 @@ jobs:
           sketch-folder: wk02
           collection-name: ims-wk02
 
+      - name: Sync wk03
+        uses: luisaph/p5editorsynch@main
+        with:
+          p5-username: ${{ secrets.P5_USERNAME }}
+          p5-password: ${{ secrets.P5_PASSWORD }}
+          sketch-folder: wk03
+          collection-name: ims-wk03
+
       - name: Commit changes
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
